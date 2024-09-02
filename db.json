@@ -1,0 +1,76 @@
+{
+  "logs": [
+    {
+      "message": "Передано значение параметра min меньше 0 в функцию getRandomInt(min, max)",
+      "stack": {
+        "componentStack": "\nRandomCheck@webpack-internal:///./src/components/RandomCheck.jsx:38:66\nErrorBoundary@webpack-internal:///./src/components/ErrorBoundary.jsx:32:20\nRenderedRoute@webpack-internal:///./node_modules/react-router/dist/index.js:718:7\nOutlet@webpack-internal:///./node_modules/react-router/dist/index.js:1147:3\ndiv\nMainLayout\nRenderedRoute@webpack-internal:///./node_modules/react-router/dist/index.js:718:7\nRenderErrorBoundary@webpack-internal:///./node_modules/react-router/dist/index.js:659:5\nRoutes@webpack-internal:///./node_modules/react-router/dist/index.js:1240:7\nRouter@webpack-internal:///./node_modules/react-router/dist/index.js:1176:7\nRouterProvider@webpack-internal:///./node_modules/react-router/dist/index.js:1017:7\nApp@webpack-internal:///./src/components/App.jsx:88:66\nErrorBoundary@webpack-internal:///./src/components/ErrorBoundary.jsx:32:20"
+      },
+      "date": "2023-04-07T08:03:35.786Z",
+      "id": 1
+    }
+  ],
+  "users": [
+    {
+      "name": "Иван",
+      "email": "test@domain.local",
+      "password": "$2a$10$TOZ9Lb3CagDJQWJZaF3dYOcobQmiElIvfkUEJ0A.BVfsyUj71GU96",
+      "token": "32452345hgdfsadgsalfg34u5y7dsfd7agyagh35"
+    }
+  ],
+  "incomes_expenses": [
+    {
+      "title": "Чек №1345",
+      "description": "345435",
+      "category": "other",
+      "amount": 1000,
+      "type": 1,
+      "date": "2023-04-07T08:58:38.160Z",
+      "id": 1
+    },
+    {
+      "title": "Чек №155",
+      "description": "5555",
+      "category": "fun",
+      "amount": 10000,
+      "type": 1,
+      "date": "2023-04-07T09:03:49.269Z",
+      "id": 2
+    },
+    {
+      "title": "Чек №1888",
+      "description": "888",
+      "category": "fun",
+      "amount": 2500,
+      "type": 1,
+      "date": "2023-04-07T09:07:21.201Z",
+      "id": 3
+    },
+    {
+      "title": "Чек №10",
+      "description": "5555",
+      "category": "fun",
+      "amount": 10000,
+      "type": 1,
+      "date": "2023-04-07T09:03:49.269Z",
+      "id": 4
+    },
+    {
+      "title": "Чек №1555",
+      "description": "888",
+      "category": "fun",
+      "amount": 2500,
+      "type": 1,
+      "date": "2023-04-07T09:07:21.201Z",
+      "id": 5
+    },
+    {
+      "title": "Тест 1234",
+      "description": "1234",
+      "amount": 100,
+      "type": 0,
+      "category": "electronics",
+      "date": "2023-05-03T12:03:07.272Z",
+      "id": 6
+    }
+  ]
+}

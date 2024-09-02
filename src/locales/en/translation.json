@@ -1,0 +1,39 @@
+{
+  "app": {
+    "title": "My finances",
+    "logo": "Logo",
+    "menu": {
+      "main": "Home",
+      "incomes": "My incomes",
+      "expenses": "My expenses",
+      "create": "Add row",
+      "guest": "Guest",
+      "settings": "Settings",
+      "logout": "Logout"
+    },
+    "footer": "Incomes and expenses book app"
+  },
+  "index": {
+    "title": "Book of accounting for incomes and expenses",
+    "description": "With this service, you can quickly create a book of income and expenses for personal finance. <br /> You no longer need to use expensive services and programs for such a simple task.",
+    "button": "Go to my incomes section",
+    "slider": {
+      "slideAlt": "Slide",
+      "slide1": {
+        "title": "Focus on your goals",
+        "text": "Focus on achieving financial freedom and the goals that really matter to you, rather than boring cost accounting and savings"
+      },
+      "slide2": {
+        "title": "Plan your budget",
+        "text": "All your incomes and expenses are always under your control"
+      },
+      "slide3": {
+        "title": "Consider your savings",
+        "text": "Achieve your financial goals with us"
+      }
+    }
+  },
+  "settings": {
+    "title": "Settings"
+  }
+}
