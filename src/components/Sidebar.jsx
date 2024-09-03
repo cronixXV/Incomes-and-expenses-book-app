@@ -11,7 +11,7 @@ import { AiOutlineHome, AiOutlineMinusCircle } from 'react-icons/ai'
 import { BiAddToQueue } from 'react-icons/bi'
 import { CgProfile } from 'react-icons/cg'
 
-import logo from '../img/note.svg'
+// import logo from '../img/note.svg'
 import styled from 'styled-components'
 
 const Divider = styled.hr`
@@ -26,7 +26,7 @@ export default function Sidebar() {
   })
   return (
     <Navbar
-      bg="orange"
+      bg="violet"
       variant="dark"
       style={{ width: '100%', height: isMobile ? 'auto' : '100vh' }}
       className="flex-column flex-shrink-0 p-3"
@@ -36,13 +36,13 @@ export default function Sidebar() {
         to="/"
         className="me-auto"
       >
-        <img
+        {/* <img
           src={logo}
           width="40px"
           height="40px"
           className="me-2"
           alt={t('app.logo')}
-        />
+        /> */}
         <span className="fs-4">{t('app.title')}</span>
       </Navbar.Brand>
       <Divider />
@@ -93,6 +93,20 @@ export default function Sidebar() {
               size="16"
             />
             {t('app.menu.expenses')}
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            as={Link}
+            to="/statistics"
+            eventKey="/statistics"
+            className="text-light px-3"
+          >
+            {/* <AiOutlineMinusCircle
+              className="me-2"
+              size="16"
+            /> */}
+          Статистика
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
