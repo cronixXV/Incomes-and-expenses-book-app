@@ -1,40 +1,52 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchIncomesExpenses } from '../../reducers/incomesExpensesSlice';
-import { Container, Form, Button, Table, Spinner, Alert, Row, Col } from 'react-bootstrap';
-import moment from 'moment';
-import { getCategoryLabel, getTypeLabel } from '../constants/check';
+import React, { useState, useEffect, useMemo } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchIncomesExpenses } from '../../reducers/incomesExpensesSlice'
+import {
+  Container,
+  Form,
+  Button,
+  Table,
+  Spinner,
+  Alert,
+  Row,
+  Col,
+} from 'react-bootstrap'
+import moment from 'moment'
+import { getCategoryLabel, getTypeLabel } from '../constants/check'
 
 export default function Statistics() {
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const dispatch = useDispatch();
-  const { data, loading, error } = useSelector((state) => state.incomesExpenses);
+  const [startDate, setStartDate] = useState('')
+  const [endDate, setEndDate] = useState('')
+  const [isSubmitted, setIsSubmitted] = useState(false)
+  const dispatch = useDispatch()
+  const { data, loading, error } = useSelector((state) => state.incomesExpenses)
 
   useEffect(() => {
-    dispatch(fetchIncomesExpenses());
-  }, [dispatch]);
+    dispatch(fetchIncomesExpenses())
+  }, [dispatch])
 
-  const filterData = () => {
+  const filteredData = useMemo(() => {
     if (data && startDate && endDate) {
       return data.filter((item) => {
-        const itemDate = moment(item.date);
-        return itemDate.isBetween(startDate, endDate, null, '[]');
-      });
+        const itemDate = moment(item.date)
+        return itemDate.isBetween(startDate, endDate, null, '[]')
+      })
     }
-    return [];
-  };
-
-  const filteredData = filterData();
+    return []
+  }, [data, startDate, endDate])
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-    setIsSubmitted(true);  // Устанавливаем флаг отправки
-  };
+    event.preventDefault()
+    setIsSubmitted(true)
+  }
 
   const renderTable = () => (
-    <Table striped hover variant="light" className="mt-4">
+    <Table
+      striped
+      hover
+      variant="light"
+      className="mt-4"
+    >
       <thead>
         <tr>
           <th>Название</th>
@@ -76,20 +88,24 @@ export default function Statistics() {
         ))}
       </tbody>
     </Table>
-  );
+  )
 
   if (loading) {
     return (
       <div className="d-flex justify-content-center align-items-center vh-100">
-        <Spinner animation="border" role="status" variant="primary">
+        <Spinner
+          animation="border"
+          role="status"
+          variant="primary"
+        >
           <span className="visually-hidden">Идет загрузка данных...</span>
         </Spinner>
       </div>
-    );
+    )
   }
 
   if (error) {
-    return <Alert variant="danger">Ошибка получения данных: {error}</Alert>;
+    return <Alert variant="danger">Ошибка получения данных: {error}</Alert>
   }
 
   return (
@@ -114,23 +130,24 @@ export default function Statistics() {
             required
           />
         </Form.Group>
-        <Button type="submit" variant="primary">
+        <Button
+          type="submit"
+          variant="primary"
+        >
           Применить
         </Button>
       </Form>
 
       {isSubmitted && filteredData.length === 0 && (
-        <Alert variant="info" style={{ marginTop: '20px' }}>
+        <Alert
+          variant="info"
+          style={{ marginTop: '20px' }}
+        >
           Нет данных за выбранный период.
         </Alert>
       )}
 
       {filteredData.length > 0 && renderTable()}
     </Container>
-  );
+  )
 }
-
-
-
-
-

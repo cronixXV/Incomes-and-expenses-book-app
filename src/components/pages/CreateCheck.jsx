@@ -56,30 +56,6 @@ export default function CreateCheck() {
           {amountText}
         </InputField>
 
-        {/* <Form.Group className="mb-3">
-          <Form.Label>Название</Form.Label>
-          <Form.Control
-            {...title}
-            placeholder="Название"
-          />
-          {title.error && (
-            <Alert
-              variant="danger"
-              className="mt-3"
-            >
-              {title.error}
-            </Alert>
-          )}
-        </Form.Group> */}
-        {/* <Form.Group className="mb-3">
-          <Form.Label>Сумма</Form.Label>
-          <Form.Control
-            {...amount}
-            type="number"
-            placeholder="Сумма"
-          />
-          <Form.Text className="text-muted">Введите сумму в &#8381;</Form.Text>
-        </Form.Group> */}
         <Form.Group className="mb-3">
           <Form.Label>Выберите тип записи</Form.Label>
           <div>
@@ -88,10 +64,8 @@ export default function CreateCheck() {
               name="type"
               type="radio"
               id="type-radio-1"
-              // label="Доходы"
-              // value="0"
               {...TYPE_OPTIONS[0]}
-              onChange={(event) => setType(event.target.value)}
+              onChange={(event) => setType(Number(event.target.value))}
               checked={type === TYPE_OPTIONS[0].value}
             />
             <Form.Check
@@ -99,10 +73,9 @@ export default function CreateCheck() {
               name="type"
               type="radio"
               id="type-radio-2"
-              // label="Расходы"
-              // value="1"
               {...TYPE_OPTIONS[1]}
-              onChange={(event) => setType(event.target.value)}
+              onChange={(event) => setType(Number(event.target.value))}
+              checked={type === TYPE_OPTIONS[1].value}
             />
           </div>
         </Form.Group>
@@ -173,8 +146,6 @@ export const createCheckAction = async ({ request }) => {
     type: Number(data.get('type')),
     category: data.get('category'),
   }
-
-  // console.info(result)
 
   if (result.title.length < 5) {
     return { error: 'Название должно содержать более 5 символов' }

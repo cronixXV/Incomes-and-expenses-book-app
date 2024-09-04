@@ -10,7 +10,7 @@ import { BsSpeedometer2 } from 'react-icons/bs'
 import { AiOutlineHome, AiOutlineMinusCircle } from 'react-icons/ai'
 import { BiAddToQueue } from 'react-icons/bi'
 import { CgProfile } from 'react-icons/cg'
-
+import { IoStatsChartOutline } from 'react-icons/io5'
 // import logo from '../img/note.svg'
 import styled from 'styled-components'
 
@@ -102,11 +102,11 @@ export default function Sidebar() {
             eventKey="/statistics"
             className="text-light px-3"
           >
-            {/* <AiOutlineMinusCircle
+            <IoStatsChartOutline
               className="me-2"
               size="16"
-            /> */}
-          Статистика
+            />
+            Статистика
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
