@@ -12,6 +12,7 @@ import ErrorBoundary from './ErrorBoundary'
 import LoginForm from './pages/LoginForm'
 import AuthLayout from './layouts/AuthLayout'
 import Logout from './pages/Logout'
+import Statistics from './pages/Statistics'
 import PrivateRoute from './PrivateRoute'
 // import Settings from './Settings'
 import { profilerOnRenderCallback } from '../helpers/profiler'
@@ -53,6 +54,14 @@ const router1 = createBrowserRouter([
         path: 'create',
         element: <CreateCheck />,
         action: createCheckAction,
+      },
+      {
+        path: 'statistics',
+        element: (
+        <PrivateRoute>
+          <Statistics />
+        </PrivateRoute>
+        ),
       },
       {
         path: 'items/:itemId',

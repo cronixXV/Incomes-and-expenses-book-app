@@ -1,20 +1,20 @@
-@import './theme/sketchy/variables';
+@import './theme/material/variables';
 @import '~bootstrap/scss/bootstrap';
-@import './theme/sketchy/bootswatch';
+@import './theme/material/bootswatch';
 
-.navbar.bg-orange {
-  border-radius: 0 25px 55px 0/0 55px 25px 0;
-  border-color: darkred;
+.navbar.bg-violet {
+  // border-radius: 0 25px 25px 0/0 25px 25px 0;
+  border-color: rgb(131, 60, 250);
 }
 
-.bg-orange {
-  background-color: orangered;
+.bg-violet {
+  background-color: rgb(131, 60, 250);
 }
 
-.bg-orange .nav-pills {
-  --bs-nav-pills-link-active-bg: #FA7E4A;
+.bg-violet .nav-pills {
+  --bs-nav-pills-link-active-bg: rgb(38, 38, 38);
 }
 
-.bg-orange .dropdown-menu{
-  --bs-dropdown-bg: #FA7E4A;
+.bg-violet .dropdown-menu{
+  --bs-dropdown-bg: rgb(38, 38, 38);
 }
