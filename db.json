@@ -11,10 +11,16 @@
   ],
   "users": [
     {
-      "name": "Иван",
-      "email": "test@domain.local",
-      "password": "$2a$10$TOZ9Lb3CagDJQWJZaF3dYOcobQmiElIvfkUEJ0A.BVfsyUj71GU96",
-      "token": "32452345hgdfsadgsalfg34u5y7dsfd7agyagh35"
+      "id": "1725447841296",
+      "email": "test@test",
+      "password": "$2a$10$TYlf2h1NMDnpJWYNnRD8o.JtFWpvs8U5Av7OWuQQSEXDqc.eUiWV.",
+      "name": "test"
+    },
+    {
+      "id": "1725447903382",
+      "email": "admin@admin",
+      "password": "$2a$10$xkfJI43FD1M2yW6NXKRl3uwu8Py3AFj8O8g/8HbExC/Jxs9hIfNUy",
+      "name": "admin"
     }
   ],
   "incomes_expenses": [
@@ -71,6 +77,24 @@
       "category": "electronics",
       "date": "2023-05-03T12:03:07.272Z",
       "id": 6
+    },
+    {
+      "title": "aaaaaa",
+      "description": "aaaaa",
+      "amount": "1001",
+      "type": "0",
+      "category": "electronics",
+      "date": "2024-09-04T11:39:38.225Z",
+      "id": 7
+    },
+    {
+      "title": "ффффф",
+      "description": "ффффффф",
+      "amount": 1001,
+      "type": "1",
+      "category": "electronics",
+      "date": "2024-09-04T11:56:16.004Z",
+      "id": 8
     }
   ]
 }

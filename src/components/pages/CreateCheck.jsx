@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState } from 'react'
 import { Form as RouterForm, useActionData } from 'react-router-dom'
 import axios from 'axios'
 import Button from 'react-bootstrap/Button'
@@ -22,9 +22,8 @@ export default function CreateCheck() {
     return <div>Чек добавлен!</div>
   }
 
-  const amountText = useMemo(
-    () => <Form.Text className="text-muted">Введите сумму в &#8381;</Form.Text>,
-    []
+  const amountText = (
+    <Form.Text className="text-muted">Введите сумму в &#8381;</Form.Text>
   )
 
   return (
@@ -59,24 +58,19 @@ export default function CreateCheck() {
         <Form.Group className="mb-3">
           <Form.Label>Выберите тип записи</Form.Label>
           <div>
-            <Form.Check
-              inline
-              name="type"
-              type="radio"
-              id="type-radio-1"
-              {...TYPE_OPTIONS[0]}
-              onChange={(event) => setType(Number(event.target.value))}
-              checked={type === TYPE_OPTIONS[0].value}
-            />
-            <Form.Check
-              inline
-              name="type"
-              type="radio"
-              id="type-radio-2"
-              {...TYPE_OPTIONS[1]}
-              onChange={(event) => setType(Number(event.target.value))}
-              checked={type === TYPE_OPTIONS[1].value}
-            />
+            {TYPE_OPTIONS.map((option) => (
+              <Form.Check
+                key={option.value}
+                inline
+                name="type"
+                type="radio"
+                id={`type-radio-${option.value}`}
+                value={option.value}
+                label={option.label}
+                onChange={(event) => setType(event.target.value)}
+                checked={type === option.value}
+              />
+            ))}
           </div>
         </Form.Group>
         <Form.Group className="mb-3">
@@ -143,28 +137,40 @@ export const createCheckAction = async ({ request }) => {
     title: data.get('title'),
     description: data.get('description'),
     amount: Number(data.get('amount')),
-    type: Number(data.get('type')),
+    type: data.get('type'),
     category: data.get('category'),
   }
 
-  if (result.title.length < 5) {
+  if (
+    !result.title ||
+    typeof result.title !== 'string' ||
+    result.title.trim().length < 5
+  ) {
     return { error: 'Название должно содержать более 5 символов' }
   }
 
-  if (result.type < 0 || result.type > 1) {
+  if (
+    !result.type ||
+    !TYPE_OPTIONS.some((option) => option.value === result.type)
+  ) {
     return { error: 'Выберите тип записи' }
   }
 
-  if (result.amount < 0) {
+  if (
+    !result.amount ||
+    typeof result.amount !== 'number' ||
+    result.amount < 0
+  ) {
     return { error: 'Сумма не должна быть отрицательной' }
   }
 
-  // Axios, fetch
-  axios.post(`${process.env.REACT_APP_BASE_URL}/incomes_expenses`, {
-    ...result,
-    date: new Date(),
-  })
-
-  return { isOk: true }
-  // return redirect('/about')
+  try {
+    await axios.post(`${process.env.REACT_APP_BASE_URL}/incomes_expenses`, {
+      ...result,
+      date: new Date(),
+    })
+    return { isOk: true }
+  } catch (error) {
+    return { error: 'Ошибка при создании чека' }
+  }
 }
