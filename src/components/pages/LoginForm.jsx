@@ -5,10 +5,11 @@ import Alert from 'react-bootstrap/Alert'
 import bcrypt from 'bcryptjs'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import logo from '../../img/note.svg'
+import { useTranslation } from 'react-i18next'
 
 export default function LoginForm() {
   const navigate = useNavigate()
+  const { t } = useTranslation()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -21,7 +22,7 @@ export default function LoginForm() {
       .then((result) => {
         const users = result.data
         if (users.length === 0) {
-          setError('Неверный e-mail и/или пароль')
+          setError(t('loginForm.invalidCredentials'))
           setPassword('')
           return
         }
@@ -34,7 +35,7 @@ export default function LoginForm() {
           localStorage.setItem('token', users[0].token)
           return navigate('/')
         } else {
-          setError('Неверный e-mail и/или пароль')
+          setError(t('loginForm.invalidCredentials'))
           setPassword('')
         }
       })
@@ -53,21 +54,14 @@ export default function LoginForm() {
       style={{ maxWidth: '330px' }}
     >
       <div className="text-center">
-        <img
-          src={logo}
-          alt="Логотип"
-          width="64"
-          height="64"
-          className="mb-4"
-        />
-        <h1 className="h3 mb-4 fw-normal">Форма авторизации</h1>
+        <h1 className="h3 mb-4 fw-normal">{t('loginForm.authFormTitle')}</h1>
       </div>
 
       <Form.Group className="mb-2">
         <Form.Control
           type="email"
           size="lg"
-          placeholder="Email"
+          placeholder={t('loginForm.emailPlaceholder')}
           required
           value={email}
           onChange={(event) => setEmail(event.target.value)}
@@ -78,7 +72,7 @@ export default function LoginForm() {
         <Form.Control
           type="password"
           size="lg"
-          placeholder="Пароль"
+          placeholder={t('loginForm.passwordPlaceholder')}
           required
           value={password}
           onChange={(event) => setPassword(event.target.value)}
@@ -93,7 +87,7 @@ export default function LoginForm() {
         type="submit"
         className="w-100"
       >
-        Войти
+        {t('loginForm.loginButton')}
       </Button>
     </Form>
   )

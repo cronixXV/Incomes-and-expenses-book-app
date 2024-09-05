@@ -1,15 +1,16 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const ESLintPlugin = require('eslint-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
 const isProduction = process.env.NODE_ENV === 'production'
-// console.log('isProduction', isProduction)
 
-const styleLoaderHandler = isProduction ? MiniCssExtractPlugin.loader : 'style-loader'
+const styleLoaderHandler = isProduction
+  ? MiniCssExtractPlugin.loader
+  : 'style-loader'
 
 module.exports = {
   // mode: 'production',

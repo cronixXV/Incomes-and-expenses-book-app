@@ -5,7 +5,9 @@ import NavDropdown from 'react-bootstrap/NavDropdown'
 import { Link } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux' // Импортируем useSelector
+import { useSelector, useDispatch } from 'react-redux'
+import { logout } from '../reducers/authSlice'
+import { login } from '../reducers/authSlice'
 import { BsSpeedometer2 } from 'react-icons/bs'
 import { AiOutlineHome, AiOutlineMinusCircle } from 'react-icons/ai'
 import { BiAddToQueue } from 'react-icons/bi'
@@ -25,13 +27,20 @@ export default function Sidebar() {
     query: '(max-width: 768px)',
   })
 
-  // Используем useSelector для получения данных из Redux
+  const dispatch = useDispatch()
   const { isAuthenticated, user } = useSelector((state) => state.auth)
 
-  // Определяем, что показывать: имя пользователя, email или "Гость/Guest"
   const userDisplayName = isAuthenticated
-    ? user?.name || user?.email || t('app.menu.guest') // Показывает имя пользователя, если оно есть, иначе email
-    : t('app.menu.guest') // Если пользователь не аутентифицирован, показываем "Гость/Guest"
+    ? user?.name || user?.email || t('app.menu.guest')
+    : t('app.menu.guest')
+
+  const handleLogout = () => {
+    dispatch(logout())
+  }
+
+  const handleLogin = () => {
+    dispatch(login())
+  }
 
   return (
     <Navbar
@@ -108,7 +117,7 @@ export default function Sidebar() {
               className="me-2"
               size="16"
             />
-            Статистика
+            {t('app.menu.statistics')}
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
@@ -125,20 +134,22 @@ export default function Sidebar() {
             {t('app.menu.create')}
           </Nav.Link>
         </Nav.Item>
-        <Nav.Item>
-          <Nav.Link
-            as={Link}
-            to="/register"
-            eventKey="/register"
-            className="text-light px-3"
-          >
-            <FaRegIdCard
-              className="me-2"
-              size="16"
-            />
-            Регистрация
-          </Nav.Link>
-        </Nav.Item>
+        {!isAuthenticated && (
+          <Nav.Item>
+            <Nav.Link
+              as={Link}
+              to="/register"
+              eventKey="/register"
+              className="text-light px-3"
+            >
+              <FaRegIdCard
+                className="me-2"
+                size="16"
+              />
+              {t('app.menu.register')}
+            </Nav.Link>
+          </Nav.Item>
+        )}
       </Nav>
       <Divider />
 
@@ -157,19 +168,43 @@ export default function Sidebar() {
         drop="up"
         menuVariant="dark"
       >
-        <NavDropdown.Item
-          as={Link}
-          to="/settings"
-        >
-          {t('app.menu.settings')}
-        </NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item
-          as={Link}
-          to="/auth/logout"
-        >
-          {t('app.menu.logout')}
-        </NavDropdown.Item>
+        {isAuthenticated ? (
+          <>
+            <NavDropdown.Item
+              as={Link}
+              to="/settings"
+              eventKey="/settings"
+            >
+              {t('app.menu.settings')}
+            </NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item
+              onClick={handleLogout}
+              as={Link}
+              to="/auth"
+              eventKey="/auth"
+            >
+              {t('app.menu.logout')}
+            </NavDropdown.Item>
+          </>
+        ) : (
+          <>
+            <NavDropdown.Item
+              as={Link}
+              to="/settings"
+            >
+              {t('app.menu.settings')}
+            </NavDropdown.Item>
+            <NavDropdown.Item
+              onClick={handleLogin}
+              as={Link}
+              to="/auth"
+              eventKey="/auth"
+            >
+              {t('app.menu.login')}
+            </NavDropdown.Item>
+          </>
+        )}
       </NavDropdown>
     </Navbar>
   )

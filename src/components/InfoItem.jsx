@@ -13,10 +13,7 @@ export default function InfoItem(properties) {
         {properties.title}{' '}
         <span onClick={() => changeThemeNext()}>({theme})</span>
       </div>
-      <div
-        className={'user-info ' + properties.classTitle}
-        // dangerouslySetInnerHTML={{ __html: properties.value }}
-      >
+      <div className={'user-info ' + properties.classTitle}>
         {properties.value}
       </div>
     </>

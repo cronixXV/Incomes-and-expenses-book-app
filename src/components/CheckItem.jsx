@@ -7,12 +7,14 @@ import { Link } from 'react-router-dom'
 import Table from 'react-bootstrap/Table'
 import moment from 'moment'
 import { getCategoryLabel, getTypeLabel } from './constants/check'
+import { useTranslation } from 'react-i18next'
 
 export default function CheckItem() {
   let { itemId } = useParams()
   itemId = Number(itemId)
 
   const dispatch = useDispatch()
+  const { t } = useTranslation()
   const { data, loading, error } = useSelector((state) => {
     const item = state.incomesExpenses.data.find((item) => item.id === itemId)
     return {
@@ -27,21 +29,21 @@ export default function CheckItem() {
   }, [dispatch, itemId])
 
   if (loading || !data) {
-    return <div>Идет загрузка данных...</div>
+    return <div>{t('checkItem.loadingData')}</div>
   }
 
   if (error) {
-    return <div>Ошибка получения данных: {error}</div>
+    return <div>{t('checkItem.errorFetchingData', { error })}</div>
   }
 
   return (
     <div>
       <Breadcrumb className="mb-5">
         <Breadcrumb.Item>
-          <Link to="/">Главная</Link>
+          <Link to="/">{t('checkItem.breadcrumbHome')}</Link>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
-          <Link to="/incomes">Все чеки</Link>
+          <Link to="/incomes">{t('checkItem.breadcrumbAllChecks')}</Link>
         </Breadcrumb.Item>
         <Breadcrumb.Item active>№ {itemId}</Breadcrumb.Item>
       </Breadcrumb>
@@ -55,34 +57,34 @@ export default function CheckItem() {
       >
         <thead>
           <tr>
-            <th>Название</th>
-            <th>Значение</th>
+            <th>{t('checkItem.tableHeaders.title')}</th>
+            <th>{t('checkItem.tableHeaders.value')}</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>№</td>
+            <td>{t('checkItem.id')}</td>
             <td>{data.id}</td>
           </tr>
           <tr>
-            <td>Сумма</td>
-            <td>{data.amount} &#8381;</td>
+            <td>{t('checkItem.amount')}</td>
+            <td>{data.amount}</td>
           </tr>
           <tr>
-            <td>Тип операции</td>
+            <td>{t('checkItem.operationType')}</td>
             <td>{getTypeLabel(data.type)}</td>
           </tr>
           <tr>
-            <td>Категория</td>
+            <td>{t('checkItem.category')}</td>
             <td>{getCategoryLabel(data.category)}</td>
           </tr>
           <tr>
-            <td>Дата создания</td>
+            <td>{t('checkItem.creationDate')}</td>
             <td>{moment(data.date).format('DD.MM.YYYY')}</td>
           </tr>
           <tr>
             <td colSpan="2">
-              <h5>Описание</h5>
+              <h5>{t('checkItem.description')}</h5>
               <p>{data.description}</p>
             </td>
           </tr>

@@ -7,74 +7,77 @@
       },
       "date": "2023-04-07T08:03:35.786Z",
       "id": 1
+    },
+    {
+      "message": "profilerOnRenderCallback is not defined",
+      "stack": {
+        "componentStack": "\n    at App (webpack-internal:///./src/components/App.jsx:108:66)\n    at Provider (webpack-internal:///./node_modules/react-redux/dist/react-redux.mjs:1053:3)\n    at ErrorBoundary (webpack-internal:///./src/components/ErrorBoundary.jsx:30:5)"
+      },
+      "date": "2024-09-05T11:20:13.195Z",
+      "id": 2
+    },
+    {
+      "message": "useTranslation is not defined",
+      "stack": {
+        "componentStack": "\n    at App (webpack-internal:///./src/components/App.jsx:108:66)\n    at Provider (webpack-internal:///./node_modules/react-redux/dist/react-redux.mjs:1053:3)\n    at ErrorBoundary (webpack-internal:///./src/components/ErrorBoundary.jsx:30:5)"
+      },
+      "date": "2024-09-05T13:37:02.692Z",
+      "id": 3
+    },
+    {
+      "message": "t is not defined",
+      "stack": {
+        "componentStack": "\n    at App (webpack-internal:///./src/components/App.jsx:108:66)\n    at Provider (webpack-internal:///./node_modules/react-redux/dist/react-redux.mjs:1053:3)\n    at ErrorBoundary (webpack-internal:///./src/components/ErrorBoundary.jsx:30:5)"
+      },
+      "date": "2024-09-05T13:38:16.361Z",
+      "id": 4
     }
   ],
   "users": [
     {
-      "id": "1725447841296",
-      "email": "test@test",
-      "password": "$2a$10$TYlf2h1NMDnpJWYNnRD8o.JtFWpvs8U5Av7OWuQQSEXDqc.eUiWV.",
-      "name": "test"
+      "id": "1725547876583",
+      "email": "test1@test1.ru",
+      "password": "$2a$10$OXXca5UaZGI2Lfnc0lJ2ZeA/PyMM3.CJvdCUF5.jI9.DY4IfBrYfi",
+      "name": "test1"
     },
     {
-      "id": "1725447903382",
-      "email": "admin@admin",
-      "password": "$2a$10$xkfJI43FD1M2yW6NXKRl3uwu8Py3AFj8O8g/8HbExC/Jxs9hIfNUy",
-      "name": "admin"
+      "id": "1725548086084",
+      "email": "test@test2.ru",
+      "password": "$2a$10$ywCizRVtroEFnlINMZz8TOoKQC0m0TXzfEvGsnMyp1PT4XbgvgeDK",
+      "name": "test2"
     },
     {
-      "id": "1725525496333",
-      "email": "admin1@admin1.ru",
-      "password": "$2a$10$R0HeZ3CmgbT/0MVGTDYM4uLQ6tWfxoQyYfreAnw/2TGZl.1uqEaya",
-      "name": "Admin1"
+      "id": "1725548269571",
+      "email": "eee@mail.ru",
+      "password": "$2a$10$5HO24oGBVBVMWgv4EsEUqOaXu16sLX0RxXKeVcM5z//99S94z4J2S",
+      "name": "еее"
+    },
+    {
+      "id": "1725548819934",
+      "email": "test3@test3.ru",
+      "password": "$2a$10$j.rqTLo32hIfmiXmFzgeFOOg4VzN0JCAJluRswe60o50SJjkQFJWe",
+      "name": "test3"
+    },
+    {
+      "id": "1725548919057",
+      "email": "test4@mail.ru",
+      "password": "$2a$10$y3dhZZ.PE9cl1Zs8qLcK9uIXzas/92HefsmyYTXzxvaWUuYoVKY1G",
+      "name": "test4"
+    },
+    {
+      "id": "1725549103403",
+      "email": "test5@mail.ru",
+      "password": "$2a$10$Weq5qk5n11OA4sMAdMMyGOIsuORd3.4cWcI8IxpXcwqyjyGR/N7Xi",
+      "name": "test5"
+    },
+    {
+      "id": "1725549559666",
+      "email": "test11@mail.ru",
+      "password": "$2a$10$47peSmNlIlwATnMGEoJroeToAyqQRclGa2siCEceUSMr4c9Uh1nDe",
+      "name": "test11"
     }
   ],
   "incomes_expenses": [
-    {
-      "title": "Чек №1345",
-      "description": "345435",
-      "category": "other",
-      "amount": 1000,
-      "type": 1,
-      "date": "2023-04-07T08:58:38.160Z",
-      "id": 1
-    },
-    {
-      "title": "Чек №155",
-      "description": "5555",
-      "category": "fun",
-      "amount": 10000,
-      "type": 1,
-      "date": "2023-04-07T09:03:49.269Z",
-      "id": 2
-    },
-    {
-      "title": "Чек №1888",
-      "description": "888",
-      "category": "fun",
-      "amount": 2500,
-      "type": 1,
-      "date": "2023-04-07T09:07:21.201Z",
-      "id": 3
-    },
-    {
-      "title": "Чек №10",
-      "description": "5555",
-      "category": "fun",
-      "amount": 10000,
-      "type": 1,
-      "date": "2023-04-07T09:03:49.269Z",
-      "id": 4
-    },
-    {
-      "title": "Чек №1555",
-      "description": "888",
-      "category": "fun",
-      "amount": 2500,
-      "type": 1,
-      "date": "2023-04-07T09:07:21.201Z",
-      "id": 5
-    },
     {
       "title": "Тест 1234",
       "description": "1234",
@@ -101,6 +104,15 @@
       "category": "electronics",
       "date": "2024-09-04T11:56:16.004Z",
       "id": 8
+    },
+    {
+      "title": "test2",
+      "description": "qqqqqqqq",
+      "amount": 1001,
+      "type": "1",
+      "category": "fun",
+      "date": "2024-09-05T11:21:51.069Z",
+      "id": 9
     }
   ]
 }

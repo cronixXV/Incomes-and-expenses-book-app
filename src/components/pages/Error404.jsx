@@ -1,13 +1,12 @@
 import React from 'react'
-// import { useRouteError } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 export default function Error404() {
-  // const error = useRouteError()
-  // console.info(error)
+  const { t } = useTranslation()
 
   return (
     <>
-      <div>Страница не найдена</div>
+      <div>{t('error404.pageNotFound')}</div>
     </>
   )
 }

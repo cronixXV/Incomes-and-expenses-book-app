@@ -12,9 +12,6 @@ function InputField({
 }) {
   return (
     <Form.Group className="mb-3">
-      <Form.Label>
-        {title} ({(Math.random() * 1000).toFixed(0)})
-      </Form.Label>
       <Form.Control
         id={id}
         name={id}

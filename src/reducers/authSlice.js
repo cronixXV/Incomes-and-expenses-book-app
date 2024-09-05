@@ -6,7 +6,6 @@ export const login = createAsyncThunk(
   'auth/login',
   async ({ email, password }, { rejectWithValue }) => {
     try {
-      // Используем базовый URL
       const response = await fetch(
         `${process.env.REACT_APP_BASE_URL}/users?email=${email}`
       )
@@ -28,7 +27,7 @@ export const login = createAsyncThunk(
         return rejectWithValue('Неверный email и/или пароль')
       }
 
-      const token = user.token || 'mockTokenForExample' // Пример использования статического токена
+      const token = user.token || 'mockTokenForExample'
 
       return {
         isAuthenticated: true,
@@ -46,7 +45,6 @@ export const register = createAsyncThunk(
   'auth/register',
   async ({ email, password, name }, { rejectWithValue }) => {
     try {
-      // Проверяем, существует ли пользователь с данным email
       const response = await fetch(
         `${process.env.REACT_APP_BASE_URL}/users?email=${email}`
       )
@@ -61,7 +59,6 @@ export const register = createAsyncThunk(
         return rejectWithValue('Пользователь с таким email уже существует')
       }
 
-      // Хешируем пароль перед сохранением
       const hashedPassword = bcrypt.hashSync(password, 10)
 
       const newUser = {
@@ -71,7 +68,6 @@ export const register = createAsyncThunk(
         name,
       }
 
-      // Сохраняем нового пользователя в базу данных
       const saveResponse = await fetch(
         `${process.env.REACT_APP_BASE_URL}/users`,
         {
@@ -89,8 +85,7 @@ export const register = createAsyncThunk(
 
       const savedUser = await saveResponse.json()
 
-      // Возвращаем email и имя нового пользователя, а также мокаем token
-      const token = 'mockTokenForExample' // Пример использования статического токена
+      const token = 'mockTokenForExample'
 
       return {
         email: savedUser.email,
@@ -99,6 +94,35 @@ export const register = createAsyncThunk(
       }
     } catch (error) {
       return rejectWithValue(error.message || 'Ошибка при выполнении запроса')
+    }
+  }
+)
+
+// Async thunk для обновления имени пользователя
+export const updateUserNameThunk = createAsyncThunk(
+  'auth/updateUserName',
+  async (newName, { getState, rejectWithValue }) => {
+    const { user } = getState().auth
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/users/${user.id}`,
+        {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name: newName }),
+        }
+      )
+
+      if (!response.ok) {
+        throw new Error('Ошибка при обновлении имени пользователя')
+      }
+
+      const updatedUser = await response.json()
+      return updatedUser.name
+    } catch (error) {
+      return rejectWithValue(error.message)
     }
   }
 )
@@ -122,6 +146,10 @@ const authSlice = createSlice({
       localStorage.removeItem('token')
       localStorage.removeItem('user')
     },
+    updateUserName: (state, action) => {
+      state.user.name = action.payload
+      localStorage.setItem('user', JSON.stringify(state.user))
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -130,39 +158,67 @@ const authSlice = createSlice({
         state.error = null
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.status = 'succeeded'
-        state.isAuthenticated = action.payload.isAuthenticated
-        state.user = action.payload.user
-        state.token = action.payload.token
-        localStorage.setItem('isAuthenticated', true)
-        localStorage.setItem('token', action.payload.token)
-        localStorage.setItem('user', JSON.stringify(action.payload.user))
+        if (action.payload && action.payload.user) {
+          state.status = 'succeeded'
+          state.isAuthenticated = action.payload.isAuthenticated
+          state.user = action.payload.user
+          state.token = action.payload.token
+          localStorage.setItem('isAuthenticated', true)
+          localStorage.setItem('token', action.payload.token)
+          localStorage.setItem('user', JSON.stringify(action.payload.user))
+        } else {
+          state.status = 'failed'
+          state.error = 'Неверный ответ от сервера'
+        }
       })
       .addCase(login.rejected, (state, action) => {
         state.status = 'failed'
-        state.error = action.payload
+        state.error = action.payload || 'Ошибка при входе'
       })
       .addCase(register.pending, (state) => {
         state.status = 'loading'
         state.error = null
       })
       .addCase(register.fulfilled, (state, action) => {
-        state.status = 'succeeded'
-        state.isAuthenticated = true
-        state.user = { email: action.payload.email, name: action.payload.name }
-        state.token = action.payload.token
-        localStorage.setItem('isAuthenticated', true)
-        localStorage.setItem('token', action.payload.token)
-        localStorage.setItem('user', JSON.stringify(state.user))
+        if (action.payload) {
+          state.status = 'succeeded'
+          state.isAuthenticated = true
+          state.user = {
+            email: action.payload.email,
+            name: action.payload.name,
+          }
+          state.token = action.payload.token
+          localStorage.setItem('isAuthenticated', true)
+          localStorage.setItem('token', action.payload.token)
+          localStorage.setItem('user', JSON.stringify(state.user))
+        } else {
+          state.status = 'failed'
+          state.error = 'Неверный ответ от сервера'
+        }
       })
       .addCase(register.rejected, (state, action) => {
         state.status = 'failed'
-        state.error = action.payload
+        state.error = action.payload || 'Ошибка при регистрации'
+      })
+      .addCase(updateUserNameThunk.pending, (state) => {
+        state.status = 'loading'
+      })
+      .addCase(updateUserNameThunk.fulfilled, (state, action) => {
+        if (action.payload) {
+          state.status = 'succeeded'
+          state.user.name = action.payload
+          localStorage.setItem('user', JSON.stringify(state.user))
+        } else {
+          state.status = 'failed'
+          state.error = 'Неверный ответ от сервера'
+        }
+      })
+      .addCase(updateUserNameThunk.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.payload || 'Ошибка при обновлении имени'
       })
   },
 })
 
-// Экспортируем действие logout, чтобы его можно было использовать в компонентах
-export const { logout } = authSlice.actions
-
+export const { logout, updateUserName } = authSlice.actions
 export default authSlice.reducer

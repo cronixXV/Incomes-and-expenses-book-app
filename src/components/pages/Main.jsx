@@ -25,7 +25,7 @@ export default function Main() {
         <Link to="/incomes">
           <Button
             size="lg"
-            variant="outline-primary"
+            className="custom-btn-main"
           >
             <BsSpeedometer2
               className="me-2"
