@@ -14,6 +14,7 @@ import AuthLayout from './layouts/AuthLayout'
 import Logout from './pages/Logout'
 import Statistics from './pages/Statistics'
 import PrivateRoute from './PrivateRoute'
+import RegisterForm from './pages/RegisterForm'
 // import Settings from './Settings'
 import { profilerOnRenderCallback } from '../helpers/profiler'
 
@@ -58,9 +59,9 @@ const router1 = createBrowserRouter([
       {
         path: 'statistics',
         element: (
-        <PrivateRoute>
-          <Statistics />
-        </PrivateRoute>
+          <PrivateRoute>
+            <Statistics />
+          </PrivateRoute>
         ),
       },
       {
@@ -89,6 +90,28 @@ const router1 = createBrowserRouter([
         element: (
           <ErrorBoundary>
             <LoginForm />
+          </ErrorBoundary>
+        ),
+      },
+      {
+        path: 'logout',
+        element: <Logout />,
+      },
+      {
+        path: '*',
+        element: <Error404 />,
+      },
+    ],
+  },
+  {
+    path: '/register',
+    element: <AuthLayout />,
+    children: [
+      {
+        index: true,
+        element: (
+          <ErrorBoundary>
+            <RegisterForm />
           </ErrorBoundary>
         ),
       },

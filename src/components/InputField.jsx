@@ -17,6 +17,7 @@ function InputField({
       </Form.Label>
       <Form.Control
         id={id}
+        name={id}
         type={type}
         placeholder={title}
         value={value}

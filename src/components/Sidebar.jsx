@@ -5,13 +5,13 @@ import NavDropdown from 'react-bootstrap/NavDropdown'
 import { Link } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
 import { useTranslation } from 'react-i18next'
-
+import { useSelector } from 'react-redux' // Импортируем useSelector
 import { BsSpeedometer2 } from 'react-icons/bs'
 import { AiOutlineHome, AiOutlineMinusCircle } from 'react-icons/ai'
 import { BiAddToQueue } from 'react-icons/bi'
 import { CgProfile } from 'react-icons/cg'
 import { IoStatsChartOutline } from 'react-icons/io5'
-// import logo from '../img/note.svg'
+import { FaRegIdCard } from 'react-icons/fa6'
 import styled from 'styled-components'
 
 const Divider = styled.hr`
@@ -24,6 +24,15 @@ export default function Sidebar() {
   const isMobile = useMediaQuery({
     query: '(max-width: 768px)',
   })
+
+  // Используем useSelector для получения данных из Redux
+  const { isAuthenticated, user } = useSelector((state) => state.auth)
+
+  // Определяем, что показывать: имя пользователя, email или "Гость/Guest"
+  const userDisplayName = isAuthenticated
+    ? user?.name || user?.email || t('app.menu.guest') // Показывает имя пользователя, если оно есть, иначе email
+    : t('app.menu.guest') // Если пользователь не аутентифицирован, показываем "Гость/Guest"
+
   return (
     <Navbar
       bg="violet"
@@ -36,13 +45,6 @@ export default function Sidebar() {
         to="/"
         className="me-auto"
       >
-        {/* <img
-          src={logo}
-          width="40px"
-          height="40px"
-          className="me-2"
-          alt={t('app.logo')}
-        /> */}
         <span className="fs-4">{t('app.title')}</span>
       </Navbar.Brand>
       <Divider />
@@ -123,6 +125,20 @@ export default function Sidebar() {
             {t('app.menu.create')}
           </Nav.Link>
         </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            as={Link}
+            to="/register"
+            eventKey="/register"
+            className="text-light px-3"
+          >
+            <FaRegIdCard
+              className="me-2"
+              size="16"
+            />
+            Регистрация
+          </Nav.Link>
+        </Nav.Item>
       </Nav>
       <Divider />
 
@@ -133,7 +149,7 @@ export default function Sidebar() {
               className="me-2"
               size="32"
             />
-            <strong>{t('app.menu.guest')}</strong>
+            <strong>{userDisplayName}</strong>
           </>
         }
         className="text-light"
