@@ -21,6 +21,12 @@
       "email": "admin@admin",
       "password": "$2a$10$xkfJI43FD1M2yW6NXKRl3uwu8Py3AFj8O8g/8HbExC/Jxs9hIfNUy",
       "name": "admin"
+    },
+    {
+      "id": "1725525496333",
+      "email": "admin1@admin1.ru",
+      "password": "$2a$10$R0HeZ3CmgbT/0MVGTDYM4uLQ6tWfxoQyYfreAnw/2TGZl.1uqEaya",
+      "name": "Admin1"
     }
   ],
   "incomes_expenses": [

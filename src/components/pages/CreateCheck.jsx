@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import { Form as RouterForm, useActionData } from 'react-router-dom'
 import axios from 'axios'
 import Button from 'react-bootstrap/Button'
@@ -18,13 +18,14 @@ export default function CreateCheck() {
 
   const data = useActionData()
 
+  const amountText = useMemo(
+    () => <Form.Text className="text-muted">Введите сумму в &#8381;</Form.Text>,
+    []
+  )
+
   if (data && data.isOk) {
     return <div>Чек добавлен!</div>
   }
-
-  const amountText = (
-    <Form.Text className="text-muted">Введите сумму в &#8381;</Form.Text>
-  )
 
   return (
     <div>

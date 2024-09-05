@@ -33,8 +33,6 @@ export default function Sidebar() {
     ? user?.name || user?.email || t('app.menu.guest') // Показывает имя пользователя, если оно есть, иначе email
     : t('app.menu.guest') // Если пользователь не аутентифицирован, показываем "Гость/Guest"
 
-  console.log('AuthstateinSidebar:', { isAuthenticated, user })
-
   return (
     <Navbar
       bg="violet"
