@@ -32,7 +32,7 @@ npm run serve:json
 ```
 
 # Возможность выбора языка приложения в настройках
-![Страница с настройками приложения](./screenshot2.jpg)
+![Страница с настройками приложения](./scrin2.png)
 
 ## Лицензия
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
