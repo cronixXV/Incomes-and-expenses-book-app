@@ -25,13 +25,15 @@ export default function Settings() {
       <h1 className="mb-5">{t('settingsLang.title')}</h1>
       <Button
         onClick={() => handleClick('en')}
-        variant="outline-primary"
+        // variant="outline-primary"
+        className="custom-btn-main"
       >
         {t('settingsLang.language.english')}
       </Button>{' '}
       <Button
         onClick={() => handleClick('ru')}
-        variant="outline-primary"
+        // variant="outline-primary"
+        className="custom-btn-main"
       >
         {t('settingsLang.language.russian')}
       </Button>
@@ -49,7 +51,7 @@ export default function Settings() {
           <Button
             onClick={handleNameChange}
             variant="primary"
-            className="mt-3"
+            className="mt-3 custom-btn-main"
           >
             {t('settingsLang.save')}
           </Button>

@@ -70,7 +70,7 @@ export default function LoginForm() {
       {localError && <Alert variant="danger">{localError}</Alert>}
 
       <Button
-        variant="primary"
+        variant="success"
         size="lg"
         type="submit"
         className="w-100"
@@ -80,7 +80,13 @@ export default function LoginForm() {
       </Button>
 
       <div className="text-center mt-3">
-        Еще не зарегистрированы? <Link to="/register">Зарегистрироваться</Link>
+        Еще не зарегистрированы?{' '}
+        <Link
+          to="/register"
+          className="custom-link-reg-log"
+        >
+          Зарегистрироваться
+        </Link>
       </div>
     </Form>
   )

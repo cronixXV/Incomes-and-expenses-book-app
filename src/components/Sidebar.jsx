@@ -6,8 +6,6 @@ import { Link } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
 import { useTranslation } from 'react-i18next'
 import { useSelector, useDispatch } from 'react-redux'
-import { logout } from '../reducers/authSlice'
-import { login } from '../reducers/authSlice'
 import { BsSpeedometer2 } from 'react-icons/bs'
 import { AiOutlineHome, AiOutlineMinusCircle } from 'react-icons/ai'
 import { BiAddToQueue } from 'react-icons/bi'
@@ -33,14 +31,6 @@ export default function Sidebar() {
   const userDisplayName = isAuthenticated
     ? user?.name || user?.email || t('app.menu.guest')
     : t('app.menu.guest')
-
-  // const handleLogout = () => {
-  //   dispatch(logout())
-  // }
-
-  // const handleLogin = () => {
-  //   dispatch(login())
-  // }
 
   return (
     <Navbar
@@ -179,10 +169,9 @@ export default function Sidebar() {
             </NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item
-              // onClick={handleLogout}
               as={Link}
-              to="/auth"
-              eventKey="/auth"
+              to="/auth/logout"
+              eventKey="/auth/logout"
             >
               {t('app.menu.logout')}
             </NavDropdown.Item>
@@ -196,7 +185,6 @@ export default function Sidebar() {
               {t('app.menu.settings')}
             </NavDropdown.Item>
             <NavDropdown.Item
-              // onClick={handleLogin}
               as={Link}
               to="/auth"
               eventKey="/auth"

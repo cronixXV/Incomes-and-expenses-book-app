@@ -129,15 +129,33 @@
   color: black;
 }
 
+.custom-link-reg-log {
+  color: rgb(131, 60, 250);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.custom-link-reg-log:hover {
+  transform: scale(1.15);
+  color: rgb(113, 40, 240);
+}
+
+.custom-link-reg-log:focus,
+.custom-link-reg-log:active {
+  outline: none;
+  color: rgb(131, 60, 250);
+}
+
 .custom-btn-main,
 .custom-stats-btn,
-.custom-add-btn {
+.custom-add-btn
+{
   background-color: rgb(38, 38, 38);
 }
 
 .custom-btn-main:hover,
 .custom-stats-btn:hover,
-.custom-add-btn:hover {
+.custom-add-btn:hover 
+{
   background-color: rgb(58, 58, 58);
 }
 
@@ -146,7 +164,8 @@
 .custom-stats-btn:focus,
 .custom-stats-btn:active,
 .custom-add-btn:focus,
-.custom-add-btn:active {
+.custom-add-btn:active
+{
   outline: none;
   box-shadow: none;
   background-color: rgb(38, 38, 38);

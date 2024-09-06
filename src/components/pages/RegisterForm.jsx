@@ -85,16 +85,22 @@ export default function RegisterForm() {
       )}
 
       <Button
-        variant="primary"
+        variant="success"
         size="lg"
         type="submit"
-        className="w-100"
+        className=" w-100"
       >
         {t('registerForm.registerButton')}
       </Button>
 
       <div className="text-center mt-3">
-        Уже зарегистрированы? <Link to="/auth">Войти</Link>
+        Уже зарегистрированы?{' '}
+        <Link
+          to="/auth"
+          className="custom-link-reg-log"
+        >
+          Войти
+        </Link>
       </div>
     </Form>
   )

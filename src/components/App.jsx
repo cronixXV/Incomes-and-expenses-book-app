@@ -2,7 +2,6 @@ import React, { useState, useEffect, lazy, Suspense } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { login } from '../reducers/authSlice'
-
 import { ThemeContext } from '../helpers/ThemeContext'
 import Error404 from './pages/Error404'
 import CheckItem from './CheckItem'
