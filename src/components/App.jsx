@@ -1,22 +1,19 @@
-import React, { useState, Profiler, lazy, Suspense } from 'react'
+import React, { useState, useEffect, lazy, Suspense } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { login } from '../reducers/authSlice'
 import { ThemeContext } from '../helpers/ThemeContext'
-
-// import Main from './pages/Main'
 import Error404 from './pages/Error404'
 import CheckItem from './CheckItem'
 import MainLayout from './layouts/MainLayout'
 import CreateCheck, { createCheckAction } from './pages/CreateCheck'
 import ErrorBoundary from './ErrorBoundary'
-// import AllChecks from './pages/AllChecks'
 import LoginForm from './pages/LoginForm'
 import AuthLayout from './layouts/AuthLayout'
 import Logout from './pages/Logout'
 import Statistics from './pages/Statistics'
 import PrivateRoute from './PrivateRoute'
 import RegisterForm from './pages/RegisterForm'
-// import Settings from './Settings'
-import { profilerOnRenderCallback } from '../helpers/profiler'
 
 const Main = lazy(() => import('./pages/Main'))
 const AllChecks = lazy(() => import('./pages/AllChecks'))
@@ -128,7 +125,18 @@ const router1 = createBrowserRouter([
 ])
 
 export default function App() {
+  const dispatch = useDispatch()
   const [theme, setTheme] = useState(appThemes[0])
+
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true'
+    const token = localStorage.getItem('token')
+    const user = localStorage.getItem('user')
+
+    if (isAuthenticated && token && user) {
+      dispatch(login({ token, user: JSON.parse(user) }))
+    }
+  }, [dispatch])
 
   function changeTheme(theme) {
     if (appThemes.includes(theme)) {
@@ -145,14 +153,9 @@ export default function App() {
     <ThemeContext.Provider
       value={[theme, setTheme, changeTheme, changeThemeNext]}
     >
-      <Profiler
-        id="Routing"
-        onRender={profilerOnRenderCallback}
-      >
-        <Suspense fallback={<span>Загрузка...</span>}>
-          <RouterProvider router={router1} />
-        </Suspense>
-      </Profiler>
+      <Suspense fallback={<span>Загрузка...</span>}>
+        <RouterProvider router={router1} />
+      </Suspense>
     </ThemeContext.Provider>
   )
 }

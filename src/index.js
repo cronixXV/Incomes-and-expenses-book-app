@@ -13,7 +13,6 @@ import languageDetector from 'i18next-browser-languagedetector'
 import translationEN from './locales/en/translation.json'
 import translationRU from './locales/ru/translation.json'
 
-// import 'bootstrap/dist/css/bootstrap.min.css'
 import './style/main.scss'
 
 const resources = {
@@ -27,14 +26,9 @@ const resources = {
 
 i18n.use(languageDetector).use(initReactI18next).init({
   resources,
-  // lng: 'ru',
   fallbackLng: 'ru',
 })
 
-// Clear the existing HTML content
-// document.body.innerHTML = '<div id="app"></div>'
-
-// Render your React component instead
 const root = createRoot(document.querySelector('#app'))
 root.render(
   <ErrorBoundary fallback={<p>Ошибка 500. Обновите страницу</p>}>

@@ -8,8 +8,10 @@ import { BiAddToQueue } from 'react-icons/bi'
 import { TYPE_OPTIONS, CATEGORY_OPTIONS } from '../constants/check'
 import useInput from 'Hooks/useInput'
 import InputField from '../InputField'
+import { useTranslation } from 'react-i18next'
 
 export default function CreateCheck() {
+  const { t } = useTranslation()
   const title = useInput('', 'title', true)
   const amount = useInput('100', 'amount', true)
   const [type, setType] = useState(TYPE_OPTIONS[0].value)
@@ -19,37 +21,41 @@ export default function CreateCheck() {
   const data = useActionData()
 
   const amountText = useMemo(
-    () => <Form.Text className="text-muted">Введите сумму в &#8381;</Form.Text>,
+    () => (
+      <Form.Text className="text-muted">
+        {t('createCheck.enterAmount')}
+      </Form.Text>
+    ),
     []
   )
 
   if (data && data.isOk) {
-    return <div>Чек добавлен!</div>
+    return <div>{t('createCheck.checkAdded')}</div>
   }
 
   return (
     <div>
-      <h2>Создание нового чека</h2>
+      <h2>{t('createCheck.createNewCheck')}</h2>
       <Form
         as={RouterForm}
         action="/create"
         method="post"
         onSubmit={(event) => {
-          if (!confirm('Создать новый чек?')) {
+          if (!confirm(t('createCheck.confirmCreateCheck'))) {
             event.preventDefault()
           }
         }}
       >
         <InputField
           id="title"
-          title="Название"
+          title={t('createCheck.title')}
           onChange={title.onChange}
           value={title.value}
         />
 
         <InputField
           id="amount"
-          title="Сумма"
+          title={t('createCheck.amount')}
           onChange={amount.onChange}
           value={amount.value}
         >
@@ -57,7 +63,7 @@ export default function CreateCheck() {
         </InputField>
 
         <Form.Group className="mb-3">
-          <Form.Label>Выберите тип записи</Form.Label>
+          <Form.Label>{t('createCheck.selectType')}</Form.Label>
           <div>
             {TYPE_OPTIONS.map((option) => (
               <Form.Check
@@ -75,7 +81,7 @@ export default function CreateCheck() {
           </div>
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Описание</Form.Label>
+          <Form.Label>{t('createCheck.description')}</Form.Label>
           <Form.Control
             as="textarea"
             id="description"
@@ -89,12 +95,12 @@ export default function CreateCheck() {
           />
           {title.value.length === 0 && (
             <Form.Text className="text-muted">
-              Описание станет доступно для заполнения после ввода названия
+              {t('createCheck.descriptionAvailableAfterTitle')}
             </Form.Text>
           )}
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Категория</Form.Label>
+          <Form.Label>{t('createCheck.category')}</Form.Label>
           <Form.Select
             id="category"
             name="category"
@@ -118,13 +124,13 @@ export default function CreateCheck() {
         </div>
         <Button
           type="submit"
-          variant="primary"
+          className="custom-add-btn"
         >
           <BiAddToQueue
             className="me-2"
             size="16"
           />
-          Создать чек
+          {t('createCheck.createCheck')}
         </Button>
       </Form>
     </div>

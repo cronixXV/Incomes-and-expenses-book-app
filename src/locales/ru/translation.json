@@ -9,7 +9,10 @@
       "create": "Добавить запись",
       "guest": "Гость",
       "settings": "Настройки",
-      "logout": "Выход"
+      "logout": "Выход",
+      "login": "Вход",
+      "statistics": "Статистика",
+      "register": "Регистрация"
     },
     "footer": "Книга учета доходов и расходов"
   },
@@ -35,5 +38,108 @@
   },
   "settings": {
     "title": "Настройки"
+  },
+  "allChecks": {
+    "loadingData": "Идет загрузка данных...",
+    "errorFetchingData": "Ошибка получения данных",
+    "allChecks": "Все чеки",
+    "category": "Категория",
+    "amount": "Сумма",
+    "details": "Подробнее",
+    "edit": "Редактировать",
+    "delete": "Удалить",
+    "confirmDeletion": "Подтверждение удаления",
+    "confirmDeleteMessage": "Вы уверены, что хотите удалить этот чек?",
+    "cancel": "Отмена",
+    "editCheck": "Редактировать чек",
+    "title": "Название",
+    "description": "Описание",
+    "saveChanges": "Сохранить изменения",
+    "checkDetails": "Чек №",
+    "noDescription": "Отсутствует",
+    "food": "Еда",
+    "electronics": "Электроника",
+    "fun": "Развлечения",
+    "other": "Другое",
+    "close": "Закрыть"
+  },
+  "createCheck": {
+    "createNewCheck": "Создание нового чека",
+    "title": "Название",
+    "amount": "Сумма",
+    "enterAmount": "Введите сумму",
+    "selectType": "Выберите тип записи",
+    "description": "Описание",
+    "descriptionAvailableAfterTitle": "Описание станет доступно для заполнения после ввода названия",
+    "category": "Категория",
+    "confirmCreateCheck": "Создать новый чек?",
+    "checkAdded": "Чек добавлен!",
+    "createCheck": "Создать чек"
+  },
+  "error404": {
+    "pageNotFound": "Страница не найдена"
+  },
+  "loginForm": {
+    "authFormTitle": "Форма авторизации",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Пароль",
+    "invalidCredentials": "Неверный e-mail и/или пароль",
+    "loginButton": "Войти"
+  },
+  "registerForm": {
+    "registrationFormTitle": "Форма регистрации",
+    "usernamePlaceholder": "Имя пользователя",
+    "emailPlaceholder": "Введите email",
+    "passwordPlaceholder": "Введите пароль",
+    "registerButton": "Зарегистрироваться"
+  },
+  "statistics": {
+    "loadingData": "Идет загрузка данных...",
+    "errorFetchingData": "Ошибка получения данных: {error}",
+    "statisticsTitle": "Статистика",
+    "startDateLabel": "Дата начала",
+    "endDateLabel": "Дата окончания",
+    "applyButton": "Применить",
+    "noDataForPeriod": "Нет данных за выбранный период.",
+    "tableHeaders": {
+      "title": "Название",
+      "amount": "Сумма",
+      "type": "Тип",
+      "category": "Категория",
+      "date": "Дата"
+    }
+  },
+  "main": {
+    "loading": "Загрузка...",
+    "errorLoadingCheck": "Не удалось загрузить чек для пользователя. Попробуйте позже"
+  },
+  "checkItem": {
+    "loadingData": "Идет загрузка данных...",
+    "errorFetchingData": "Ошибка получения данных: {error}",
+    "breadcrumbHome": "Главная",
+    "breadcrumbAllChecks": "Все чеки",
+    "tableHeaders": {
+      "title": "Название",
+      "value": "Значение"
+    },
+    "id": "№",
+    "amount": "Сумма",
+    "operationType": "Тип операции",
+    "category": "Категория",
+    "creationDate": "Дата создания",
+    "description": "Описание"
+  },
+  "errorBoundary": {
+    "pageNotFound": "Страница не найдена. Ошибка 500. Обновите страницу."
+  },
+  "settingsLang": {
+    "title": "Настройки",
+    "language": {
+      "english": "Английский",
+      "russian": "Русский"
+    },
+    "changeUsername": "Изменить имя пользователя",
+    "enterNewUsername": "Введите новое имя пользователя",
+    "save": "Сохранить"
   }
 }

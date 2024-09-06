@@ -13,6 +13,7 @@ import {
 } from 'react-bootstrap'
 import moment from 'moment'
 import { getCategoryLabel, getTypeLabel } from '../constants/check'
+import { useTranslation } from 'react-i18next'
 
 export default function Statistics() {
   const [startDate, setStartDate] = useState('')
@@ -20,6 +21,7 @@ export default function Statistics() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const dispatch = useDispatch()
   const { data, loading, error } = useSelector((state) => state.incomesExpenses)
+  const { t } = useTranslation()
 
   useEffect(() => {
     dispatch(fetchIncomesExpenses())
@@ -49,11 +51,11 @@ export default function Statistics() {
     >
       <thead>
         <tr>
-          <th>Название</th>
-          <th>Сумма</th>
-          <th>Тип</th>
-          <th>Категория</th>
-          <th>Дата</th>
+          <th>{t('statistics.tableHeaders.title')}</th>
+          <th>{t('statistics.tableHeaders.amount')}</th>
+          <th>{t('statistics.tableHeaders.type')}</th>
+          <th>{t('statistics.tableHeaders.category')}</th>
+          <th>{t('statistics.tableHeaders.date')}</th>
         </tr>
       </thead>
       <tbody>
@@ -98,22 +100,26 @@ export default function Statistics() {
           role="status"
           variant="primary"
         >
-          <span className="visually-hidden">Идет загрузка данных...</span>
+          <span className="visually-hidden">{t('statistics.loadingData')}</span>
         </Spinner>
       </div>
     )
   }
 
   if (error) {
-    return <Alert variant="danger">Ошибка получения данных: {error}</Alert>
+    return (
+      <Alert variant="danger">
+        {t('statistics.errorFetchingData', { error })}
+      </Alert>
+    )
   }
 
   return (
     <Container>
-      <h1>Статистика</h1>
+      <h1>{t('statistics.statisticsTitle')}</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
-          <Form.Label>Дата начала</Form.Label>
+          <Form.Label>{t('statistics.startDateLabel')}</Form.Label>
           <Form.Control
             type="date"
             value={startDate}
@@ -122,7 +128,7 @@ export default function Statistics() {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Дата окончания</Form.Label>
+          <Form.Label>{t('statistics.endDateLabel')}</Form.Label>
           <Form.Control
             type="date"
             value={endDate}
@@ -132,9 +138,9 @@ export default function Statistics() {
         </Form.Group>
         <Button
           type="submit"
-          variant="primary"
+          className="custom-stats-btn"
         >
-          Применить
+          {t('statistics.applyButton')}
         </Button>
       </Form>
 
@@ -143,7 +149,7 @@ export default function Statistics() {
           variant="info"
           style={{ marginTop: '20px' }}
         >
-          Нет данных за выбранный период.
+          {t('statistics.noDataForPeriod')}
         </Alert>
       )}
 

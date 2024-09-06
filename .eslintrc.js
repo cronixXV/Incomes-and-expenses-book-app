@@ -1,16 +1,16 @@
 module.exports = {
   env: {
     browser: true,
-    'es2021': true,
+    es2021: true,
   },
   extends: [
     'eslint:recommended',
     'plugin:unicorn/recommended',
     'plugin:react/recommended',
-    'prettier'
+    'prettier',
   ],
   globals: {
-    'process': true,
+    process: true,
   },
   overrides: [],
   parser: '',
@@ -18,18 +18,11 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
     ecmaFeatures: {
-      jsx: true
-    }
+      jsx: true,
+    },
   },
-  ignorePatterns: [
-    '.eslintrc.js',
-    'prettier.config.js'
-  ],
-  plugins: [
-    'unicorn',
-    'react',
-    'prettier'
-  ],
+  ignorePatterns: ['.eslintrc.js', 'prettier.config.js'],
+  plugins: ['unicorn', 'react', 'prettier'],
   rules: {
     'prettier/prettier': 'error',
     'arrow-body-style': 'off',
@@ -37,11 +30,8 @@ module.exports = {
     'no-console': [
       'error',
       {
-        allow: [
-          'info',
-          'error'
-        ]
-      }
+        allow: ['info', 'error'],
+      },
     ],
     'no-var': 'error',
     'no-use-before-define': 'error',
@@ -50,5 +40,5 @@ module.exports = {
     'unicorn/filename-case': 'off',
     'unicorn/no-null': 'off',
     'unicorn/consistent-function-scoping': 'off',
-  }
-};
+  },
+}

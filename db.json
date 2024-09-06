@@ -1,80 +1,14 @@
 {
-  "logs": [
-    {
-      "message": "Передано значение параметра min меньше 0 в функцию getRandomInt(min, max)",
-      "stack": {
-        "componentStack": "\nRandomCheck@webpack-internal:///./src/components/RandomCheck.jsx:38:66\nErrorBoundary@webpack-internal:///./src/components/ErrorBoundary.jsx:32:20\nRenderedRoute@webpack-internal:///./node_modules/react-router/dist/index.js:718:7\nOutlet@webpack-internal:///./node_modules/react-router/dist/index.js:1147:3\ndiv\nMainLayout\nRenderedRoute@webpack-internal:///./node_modules/react-router/dist/index.js:718:7\nRenderErrorBoundary@webpack-internal:///./node_modules/react-router/dist/index.js:659:5\nRoutes@webpack-internal:///./node_modules/react-router/dist/index.js:1240:7\nRouter@webpack-internal:///./node_modules/react-router/dist/index.js:1176:7\nRouterProvider@webpack-internal:///./node_modules/react-router/dist/index.js:1017:7\nApp@webpack-internal:///./src/components/App.jsx:88:66\nErrorBoundary@webpack-internal:///./src/components/ErrorBoundary.jsx:32:20"
-      },
-      "date": "2023-04-07T08:03:35.786Z",
-      "id": 1
-    }
-  ],
+  "logs": [],
   "users": [
     {
-      "id": "1725447841296",
-      "email": "test@test",
-      "password": "$2a$10$TYlf2h1NMDnpJWYNnRD8o.JtFWpvs8U5Av7OWuQQSEXDqc.eUiWV.",
-      "name": "test"
-    },
-    {
-      "id": "1725447903382",
-      "email": "admin@admin",
-      "password": "$2a$10$xkfJI43FD1M2yW6NXKRl3uwu8Py3AFj8O8g/8HbExC/Jxs9hIfNUy",
-      "name": "admin"
-    },
-    {
-      "id": "1725525496333",
+      "id": "1725615335942",
       "email": "admin1@admin1.ru",
-      "password": "$2a$10$R0HeZ3CmgbT/0MVGTDYM4uLQ6tWfxoQyYfreAnw/2TGZl.1uqEaya",
-      "name": "Admin1"
+      "password": "$2a$10$pRGVi9uQp2yatqicP2o6WeyqWh9M4eLmSO6.TAroS.IY.RLKjnVZa",
+      "name": "admin1"
     }
   ],
   "incomes_expenses": [
-    {
-      "title": "Чек №1345",
-      "description": "345435",
-      "category": "other",
-      "amount": 1000,
-      "type": 1,
-      "date": "2023-04-07T08:58:38.160Z",
-      "id": 1
-    },
-    {
-      "title": "Чек №155",
-      "description": "5555",
-      "category": "fun",
-      "amount": 10000,
-      "type": 1,
-      "date": "2023-04-07T09:03:49.269Z",
-      "id": 2
-    },
-    {
-      "title": "Чек №1888",
-      "description": "888",
-      "category": "fun",
-      "amount": 2500,
-      "type": 1,
-      "date": "2023-04-07T09:07:21.201Z",
-      "id": 3
-    },
-    {
-      "title": "Чек №10",
-      "description": "5555",
-      "category": "fun",
-      "amount": 10000,
-      "type": 1,
-      "date": "2023-04-07T09:03:49.269Z",
-      "id": 4
-    },
-    {
-      "title": "Чек №1555",
-      "description": "888",
-      "category": "fun",
-      "amount": 2500,
-      "type": 1,
-      "date": "2023-04-07T09:07:21.201Z",
-      "id": 5
-    },
     {
       "title": "Тест 1234",
       "description": "1234",
@@ -101,6 +35,51 @@
       "category": "electronics",
       "date": "2024-09-04T11:56:16.004Z",
       "id": 8
+    },
+    {
+      "title": "test2",
+      "description": "qqqqqqqq",
+      "amount": 1001,
+      "type": "1",
+      "category": "fun",
+      "date": "2024-09-05T11:21:51.069Z",
+      "id": 9
+    },
+    {
+      "title": "aaaaaa",
+      "description": "aaaaaa",
+      "amount": 10011,
+      "type": "1",
+      "category": "electronics",
+      "date": "2024-09-06T11:52:52.659Z",
+      "id": 10
+    },
+    {
+      "title": "ффффффф",
+      "description": "ффффффф",
+      "amount": 100,
+      "type": "0",
+      "category": "other",
+      "date": "2024-09-06T11:55:56.028Z",
+      "id": 11
+    },
+    {
+      "title": "ффффффф",
+      "description": "",
+      "amount": 100,
+      "type": "0",
+      "category": "other",
+      "date": "2024-09-06T11:56:06.284Z",
+      "id": 12
+    },
+    {
+      "title": "ффффффф",
+      "description": "ффффффф",
+      "amount": 100,
+      "type": "0",
+      "category": "electronics",
+      "date": "2024-09-06T11:56:27.137Z",
+      "id": 13
     }
   ]
 }
