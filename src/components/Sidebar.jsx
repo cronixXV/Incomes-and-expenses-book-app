@@ -34,13 +34,13 @@ export default function Sidebar() {
     ? user?.name || user?.email || t('app.menu.guest')
     : t('app.menu.guest')
 
-  const handleLogout = () => {
-    dispatch(logout())
-  }
+  // const handleLogout = () => {
+  //   dispatch(logout())
+  // }
 
-  const handleLogin = () => {
-    dispatch(login())
-  }
+  // const handleLogin = () => {
+  //   dispatch(login())
+  // }
 
   return (
     <Navbar
@@ -179,7 +179,7 @@ export default function Sidebar() {
             </NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item
-              onClick={handleLogout}
+              // onClick={handleLogout}
               as={Link}
               to="/auth"
               eventKey="/auth"
@@ -196,7 +196,7 @@ export default function Sidebar() {
               {t('app.menu.settings')}
             </NavDropdown.Item>
             <NavDropdown.Item
-              onClick={handleLogin}
+              // onClick={handleLogin}
               as={Link}
               to="/auth"
               eventKey="/auth"

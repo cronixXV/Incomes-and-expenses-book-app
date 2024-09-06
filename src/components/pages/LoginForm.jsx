@@ -1,52 +1,40 @@
 import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate, Link } from 'react-router-dom'
+import { login } from '../../reducers/authSlice'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import Alert from 'react-bootstrap/Alert'
-import bcrypt from 'bcryptjs'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { Alert } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 
 export default function LoginForm() {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { status, error, isAuthenticated } = useSelector((state) => state.auth)
   const { t } = useTranslation()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
+  const [localError, setLocalError] = useState('')
 
   const handleSubmit = (event) => {
     event.preventDefault()
 
-    axios
-      .get(`${process.env.REACT_APP_BASE_URL}/users?email=${email}`)
-      .then((result) => {
-        const users = result.data
-        if (users.length === 0) {
-          setError(t('loginForm.invalidCredentials'))
-          setPassword('')
-          return
-        }
-
-        if (
-          users.length > 0 &&
-          bcrypt.compareSync(password, users[0].password)
-        ) {
-          localStorage.setItem('isAuthenticated', true)
-          localStorage.setItem('token', users[0].token)
-          return navigate('/')
-        } else {
-          setError(t('loginForm.invalidCredentials'))
-          setPassword('')
-        }
+    dispatch(login({ email, password }))
+      .unwrap()
+      .then(() => {
+        navigate('/')
+      })
+      .catch((error) => {
+        setLocalError('Неверный email и/или пароль')
+        setPassword('')
       })
   }
 
   useEffect(() => {
-    const isAuthenticated = localStorage.getItem('isAuthenticated')
     if (isAuthenticated) {
-      return navigate('/')
+      navigate('/')
     }
-  }, [])
+  }, [isAuthenticated, navigate])
 
   return (
     <Form
@@ -79,16 +67,21 @@ export default function LoginForm() {
         />
       </Form.Group>
 
-      {error && <Alert variant="danger">{error}</Alert>}
+      {localError && <Alert variant="danger">{localError}</Alert>}
 
       <Button
         variant="primary"
         size="lg"
         type="submit"
         className="w-100"
+        disabled={status === 'loading'}
       >
         {t('loginForm.loginButton')}
       </Button>
+
+      <div className="text-center mt-3">
+        Еще не зарегистрированы? <Link to="/register">Зарегистрироваться</Link>
+      </div>
     </Form>
   )
 }

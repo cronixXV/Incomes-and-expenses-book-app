@@ -142,9 +142,9 @@ const authSlice = createSlice({
       state.user = null
       state.token = null
       state.status = 'idle'
-      localStorage.removeItem('isAuthenticated')
-      localStorage.removeItem('token')
-      localStorage.removeItem('user')
+      // localStorage.removeItem('isAuthenticated')
+      // localStorage.removeItem('token')
+      // localStorage.removeItem('user')
     },
     updateUserName: (state, action) => {
       state.user.name = action.payload

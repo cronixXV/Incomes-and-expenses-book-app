@@ -1,7 +1,9 @@
-import React, { useState, lazy, Suspense } from 'react'
+import React, { useState, useEffect, lazy, Suspense } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { ThemeContext } from '../helpers/ThemeContext'
+import { useDispatch } from 'react-redux'
+import { login } from '../reducers/authSlice'
 
+import { ThemeContext } from '../helpers/ThemeContext'
 import Error404 from './pages/Error404'
 import CheckItem from './CheckItem'
 import MainLayout from './layouts/MainLayout'
@@ -124,7 +126,18 @@ const router1 = createBrowserRouter([
 ])
 
 export default function App() {
+  const dispatch = useDispatch()
   const [theme, setTheme] = useState(appThemes[0])
+
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true'
+    const token = localStorage.getItem('token')
+    const user = localStorage.getItem('user')
+
+    if (isAuthenticated && token && user) {
+      dispatch(login({ token, user: JSON.parse(user) }))
+    }
+  }, [dispatch])
 
   function changeTheme(theme) {
     if (appThemes.includes(theme)) {

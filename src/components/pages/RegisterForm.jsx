@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { register } from '../../reducers/authSlice'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
@@ -16,10 +16,19 @@ export default function RegisterForm() {
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
 
+  const [formSubmitted, setFormSubmitted] = useState(false)
+
   const handleSubmit = (e) => {
     e.preventDefault()
+    setFormSubmitted(true)
     dispatch(register({ email, password, name }))
   }
+
+  useEffect(() => {
+    if (formSubmitted) {
+      setFormSubmitted(false)
+    }
+  }, [email, password, name])
 
   useEffect(() => {
     if (status === 'succeeded') {
@@ -71,7 +80,9 @@ export default function RegisterForm() {
         />
       </Form.Group>
 
-      {status === 'failed' && error && <Alert variant="danger">{error}</Alert>}
+      {status === 'failed' && formSubmitted && error && (
+        <Alert variant="danger">{error}</Alert>
+      )}
 
       <Button
         variant="primary"
@@ -81,6 +92,10 @@ export default function RegisterForm() {
       >
         {t('registerForm.registerButton')}
       </Button>
+
+      <div className="text-center mt-3">
+        Уже зарегистрированы? <Link to="/auth">Войти</Link>
+      </div>
     </Form>
   )
 }

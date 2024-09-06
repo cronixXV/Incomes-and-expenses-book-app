@@ -35,46 +35,16 @@
   ],
   "users": [
     {
-      "id": "1725547876583",
-      "email": "test1@test1.ru",
-      "password": "$2a$10$OXXca5UaZGI2Lfnc0lJ2ZeA/PyMM3.CJvdCUF5.jI9.DY4IfBrYfi",
-      "name": "test1"
+      "id": "1725615335942",
+      "email": "admin1@admin1.ru",
+      "password": "$2a$10$pRGVi9uQp2yatqicP2o6WeyqWh9M4eLmSO6.TAroS.IY.RLKjnVZa",
+      "name": "admin1"
     },
     {
-      "id": "1725548086084",
-      "email": "test@test2.ru",
-      "password": "$2a$10$ywCizRVtroEFnlINMZz8TOoKQC0m0TXzfEvGsnMyp1PT4XbgvgeDK",
+      "id": "1725618945969",
+      "email": "test@mail.ru",
+      "password": "$2a$10$GCExSpNR0.TTZBpsg9De3.tzRRb4goWerdiwY1aDhacFpL.BLyKEq",
       "name": "test2"
-    },
-    {
-      "id": "1725548269571",
-      "email": "eee@mail.ru",
-      "password": "$2a$10$5HO24oGBVBVMWgv4EsEUqOaXu16sLX0RxXKeVcM5z//99S94z4J2S",
-      "name": "еее"
-    },
-    {
-      "id": "1725548819934",
-      "email": "test3@test3.ru",
-      "password": "$2a$10$j.rqTLo32hIfmiXmFzgeFOOg4VzN0JCAJluRswe60o50SJjkQFJWe",
-      "name": "test3"
-    },
-    {
-      "id": "1725548919057",
-      "email": "test4@mail.ru",
-      "password": "$2a$10$y3dhZZ.PE9cl1Zs8qLcK9uIXzas/92HefsmyYTXzxvaWUuYoVKY1G",
-      "name": "test4"
-    },
-    {
-      "id": "1725549103403",
-      "email": "test5@mail.ru",
-      "password": "$2a$10$Weq5qk5n11OA4sMAdMMyGOIsuORd3.4cWcI8IxpXcwqyjyGR/N7Xi",
-      "name": "test5"
-    },
-    {
-      "id": "1725549559666",
-      "email": "test11@mail.ru",
-      "password": "$2a$10$47peSmNlIlwATnMGEoJroeToAyqQRclGa2siCEceUSMr4c9Uh1nDe",
-      "name": "test11"
     }
   ],
   "incomes_expenses": [
